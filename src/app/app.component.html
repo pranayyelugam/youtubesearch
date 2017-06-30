@@ -1,3 +1,26 @@
-<h1>
-  {{title}}
-</h1>
+<div class="jumbotron" align="center">
+  <h1>YouTube Search</h1>
+</div>
+<div class='container'>
+      
+      <div *ngIf ="loading" >
+        <img style="float: center;" src="smiley.gif" />
+      </div>
+
+      <div class="row">
+        <div class="input-group input-group-lg col-md-12">
+          <app-searchbox
+            (loading)="loading = $event"
+             (results)="updateResults($event)"
+              ></app-searchbox>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row"  *ngIf ="!loading">
+        <app-searchresult
+          *ngFor="let result of results"
+          [result]="result">
+        </app-searchresult>
+      </div>
+  </div>
